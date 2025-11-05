@@ -1,0 +1,26 @@
+name: CI/CD to Railway with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t speech-app:latest .
+
+      - name: Install Railway CLI
+        run: curl -fsSL https://railway.app/cli | bash
+
+      - name: Deploy to Railway
+        run: |
+          railway up --service speech
+        env:
+          RAILWAY_TOKEN: ${{ secrets.SPEECH }}
