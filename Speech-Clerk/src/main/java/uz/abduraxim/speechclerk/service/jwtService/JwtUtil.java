@@ -33,8 +33,6 @@ public class JwtUtil {
         extraClaims.put("Created by: ", "https://abduraxim.uz");
         extraClaims.put("Role", authorities.toString().substring(6, authorities.toString().length() - 1));
 
-        log.info("Token: {} {}", TOKEN_LIVE_TIME, SECRET_KEY);
-
         return Jwts
                 .builder()
                 .claims(extraClaims)

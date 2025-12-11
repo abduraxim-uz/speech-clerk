@@ -8,6 +8,8 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.naming.InsufficientResourcesException;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -20,6 +22,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<ErrorResponse> UsernameNotFoundException(UsernameNotFoundException ex) {
         ErrorResponse errorResponse = ErrorResponse.builder(ex, HttpStatus.NOT_FOUND, ex.getMessage()).build();
+        return new ResponseEntity<>(errorResponse, errorResponse.getStatusCode());
+    }
+
+    @ExceptionHandler(InsufficientResourcesException.class)
+    public ResponseEntity<ErrorResponse> InsufficientResourcesException(InsufficientResourcesException ex) {
+        ErrorResponse errorResponse = ErrorResponse.builder(ex, HttpStatus.PAYMENT_REQUIRED, ex.getMessage()).build();
         return new ResponseEntity<>(errorResponse, errorResponse.getStatusCode());
     }
 }

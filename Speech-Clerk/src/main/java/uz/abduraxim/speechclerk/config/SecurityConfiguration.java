@@ -32,7 +32,9 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requestConfigurer -> {
                     requestConfigurer
-//                            .requestMatchers("/api/v1/main/text-to-speech").hasAnyRole("ADMIN", "USER")
+                            .requestMatchers("/api/v1/main/text-to-speech").hasAnyRole("ADMIN", "USER")
+                            .requestMatchers("/api/v1/main/getAllUserDetails").hasRole("ADMIN")
+                            .requestMatchers("/api/v1/main/change-user-token-count").hasRole("ADMIN")
                             .anyRequest().permitAll();
                 })
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

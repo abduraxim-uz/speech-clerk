@@ -14,7 +14,7 @@ import uz.abduraxim.speechclerk.service.UserImpService;
 import uz.abduraxim.speechclerk.service.auth.AuthService;
 
 @RestController
-@RequestMapping(value = "/api/v1/auth")
+@RequestMapping(value = "/api/v2/auth")
 public class AuthController {
 
     private final UserImpService userImpService;

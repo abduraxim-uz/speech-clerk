@@ -43,6 +43,7 @@ public class AuthService implements UserDetailsService {
                         .name(user.getName())
                         .email(user.getEmail())
                         .token(jwtUtil.encode(user.getUsername(), user.getAuthorities()))
+                        .count(user.getCount())
                         .build();
             }
             throw new DataIntegrityViolationException("Invalid username or password");

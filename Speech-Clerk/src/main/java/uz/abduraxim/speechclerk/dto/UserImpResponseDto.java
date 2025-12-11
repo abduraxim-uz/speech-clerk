@@ -1,19 +1,15 @@
 package uz.abduraxim.speechclerk.dto;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Setter
 @Getter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class ResponseDto {
+public class UserImpResponseDto {
 
     private String name;
 
     private String email;
-
-    private String token;
 
     private Integer count;
 }
