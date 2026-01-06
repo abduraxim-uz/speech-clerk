@@ -15,12 +15,26 @@ public class WebConfiguration implements WebMvcConfigurer {
 //    }
 
 
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOriginPatterns("*")  // use this instead of allowedOrigins("*")
+//                .allowedMethods("*")
+//                .allowedHeaders("*")
+//                .allowCredentials(true);
+//    }
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")  // use this instead of allowedOrigins("*")
-                .allowedMethods("*")
+                .allowedOrigins(
+                        "https://my-java-app-1-0-0.onrender.com",
+                        "http://127.0.0.1:3000/",   // frontend dev
+                        "http://localhost:3000/"   // frontend dev
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
+
 }

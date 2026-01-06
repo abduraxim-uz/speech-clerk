@@ -3,10 +3,12 @@ package uz.abduraxim.speechclerk.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -34,10 +36,17 @@ public class UserImp implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private String provider;
+
+    private String providerId;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
     private Integer count;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

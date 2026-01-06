@@ -1,0 +1,30 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+.idea_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Compiled files
+*.class
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+
+# Environment files
+.env
+
+# Docker
+docker-compose.override.yml

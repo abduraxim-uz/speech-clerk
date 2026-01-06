@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import uz.abduraxim.speechclerk.repository.UserImpRepository;
+import uz.abduraxim.speechclerk.service.OAuth2LoginSuccessHandler;
 import uz.abduraxim.speechclerk.service.auth.AuthService;
 import uz.abduraxim.speechclerk.service.jwtService.JwtFilter;
 
@@ -24,6 +26,13 @@ public class SecurityConfiguration {
     private final JwtFilter jwtFilter;
 
     private final AuthService authService;
+
+    private final OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+//    @Bean
+//    public OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler(UserImpRepository userRepository) {
+//        return new OAuth2LoginSuccessHandler(userRepository);
+//    }
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
@@ -39,6 +48,9 @@ public class SecurityConfiguration {
                 })
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
+                .oauth2Login(oauth -> oauth
+                        .successHandler(oAuth2LoginSuccessHandler)
+                )
                 .build();
     }
 

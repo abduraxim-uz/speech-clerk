@@ -43,7 +43,6 @@ public class MainController {
         return ResponseEntity.ok(userImpService.getAllUserDetails());
     }
 
-
     @PutMapping(value = "/change-user-token-count")
     @PreAuthorize(value = "hasRole('ADMIN')")
     public ResponseEntity<Void> changeUserTokenCount(@Param("email") String email,
