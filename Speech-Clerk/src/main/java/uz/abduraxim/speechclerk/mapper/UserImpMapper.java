@@ -16,6 +16,7 @@ public class UserImpMapper {
                 .role(Role.USER)
                 .name(dto.getName())
                 .password(bCryptPasswordEncoder.encode(dto.getPassword()))
+                .provider("MANUAL")
                 .count(10) // for a new users
                 .email(dto.getEmail())
                 .build();

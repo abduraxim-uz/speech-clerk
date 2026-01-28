@@ -17,4 +17,12 @@ public class LoginDto {
     @Column(nullable = false)
     @Size(min = 5, max = 15)
     private String password;
+
+    @Override
+    public String toString() {
+        return "LoginDto{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package uz.abduraxim.speechclerk.controller.auth;
 
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -13,6 +14,7 @@ import uz.abduraxim.speechclerk.service.auth.AuthService;
 
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/v2/auth")
 public class AuthController {
@@ -35,6 +37,7 @@ public class AuthController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<ResponseDto> login(@Valid @RequestBody LoginDto dto) {
+        log.debug(dto.toString());
         return ResponseEntity.ok(authService.login(dto));
     }
 
